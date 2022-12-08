@@ -18,17 +18,12 @@ public class LocationServiceImpl implements LocationService {
     }
 
 
+    //========================================================================
+    //GET
     @Override
     public List<Location> findAll() {
         return locationRepository.findAll();
     }
-
-
-    @Override
-    public Location save(Location location) {
-        return locationRepository.save(location);
-    }
-
 
     @Override
     public Location findById(String id) {
@@ -38,7 +33,16 @@ public class LocationServiceImpl implements LocationService {
         });
     }
 
+    //========================================================================
+    // POST
+    @Override
+    public Location save(Location location) {
+        return locationRepository.save(location);
+    }
 
+
+    //========================================================================
+    //DELETE
     @Override
     public void deleteById(String id) {
         logger.warn("La location d'id " + id + " à été supprimé");
