@@ -12,15 +12,16 @@ import java.util.List;
 public class ClientController {
     private final ClientService clientService;
 
-
     public ClientController(ClientService clientService) {
         this.clientService = clientService;
     }
 
     //========================================================================
     //GET
+
     /**
      * Récupère la liste des clients de la database sur la route /clients
+     *
      * @return liste des clients
      */
 
@@ -31,6 +32,7 @@ public class ClientController {
 
     /**
      * Récupère un client par son ID sur la route /clients/id
+     *
      * @param id du client en PathVariable
      * @return le client trouvé ( ou erreur envoyé par le service )
      */
@@ -39,10 +41,33 @@ public class ClientController {
         return clientService.findById(id);
     }
 
+
+    /**
+     * Route de recherche en utilisant des filtres de recherches
+     * @param nom
+     * @param prenom
+     * @return Liste des Clients issue de la recherche
+     */
+    @GetMapping("recherches")
+    public List<Client> findAllBy(
+            @RequestParam(required = false) String nom,
+            @RequestParam(required = false) String prenom
+    ) {
+        if (nom != null) {
+            return this.clientService.findAllByNom(nom);
+        } else if (prenom != null) {
+            return this.clientService.findAllByPrenom(prenom);
+        } else {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+    }
+
     //========================================================================
     // POST
+
     /**
      * Ajout d'un client sur la base de donnée, utilisant la requête de chemin /clients
+     *
      * @param client L'object client envoyé dans le body de la requête
      * @return le client sauvegardé
      */
@@ -54,7 +79,8 @@ public class ClientController {
     /**
      * Recois l'id d'un client et les informations dans le body de la requête pour mettre à jour l'objet
      * dans la base de donnée
-     * @param id du client
+     *
+     * @param id     du client
      * @param client informations du client
      * @return les informations du client mise à jour
      */
@@ -68,8 +94,10 @@ public class ClientController {
 
     //========================================================================
     //DELETE
+
     /**
      * Suppression d'un client de la base de donnée sur le chemin /clients/id
+     *
      * @param id valeur de l'id envoyé en PathVariable
      */
     @DeleteMapping("{id}")

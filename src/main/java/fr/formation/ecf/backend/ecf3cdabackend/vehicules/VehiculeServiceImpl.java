@@ -32,6 +32,26 @@ public class VehiculeServiceImpl implements VehiculeService {
         });
     }
 
+    @Override
+    public List<Vehicule> findAllByDisponible(Boolean isDispo) {
+        return this.vehiculeRepository.findAllByDisponible(isDispo);
+    }
+
+    @Override
+    public List<Vehicule> findAllByMarque(String marque) {
+        return this.vehiculeRepository.findAllByMarque(marque);
+    }
+
+    @Override
+    public List<Vehicule> findAllByModele(String modele) {
+        return this.vehiculeRepository.findAllByModele(modele);
+    }
+
+    @Override
+    public List<Vehicule> findAllByEtat(String etat) {
+        return this.vehiculeRepository.findAllByEtat(etat);
+    }
+
     //========================================================================
     // POST
     @Override

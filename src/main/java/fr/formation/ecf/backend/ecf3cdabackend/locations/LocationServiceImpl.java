@@ -58,22 +58,14 @@ public class LocationServiceImpl implements LocationService {
 
     /**
      * Calcule le prix de location totale pour la période de location selectionnée
-     * En passant en argument la location qui sera sauvé en base de donnée
+     * En passant en argument la location qui sera sauvé en base de donnée.
      *
      * @param location
      */
     private Double calculeDuPrixDeLocation(Location location) {
-
-
-        Vehicule vehicule = vehiculeService.findById(location.getVehicule().getId());
-
-        Integer prixJournee = vehicule.getPrixJournee();
+        Vehicule vehiculeLoue = vehiculeService.findById(location.getVehicule().getId());
+        Integer prixJournee = vehiculeLoue.getPrixJournee();
         Long differenceJour = ChronoUnit.DAYS.between(location.getDateDebut(), location.getDateFin());
-
         return Double.valueOf(prixJournee * differenceJour);
-
-
-
-
     }
 }

@@ -17,6 +17,7 @@ public class LocationController {
 
     /**
      * Récupère la liste des locations de la database sur la route /locations
+     *
      * @return liste des locations
      */
     @GetMapping("")
@@ -26,6 +27,7 @@ public class LocationController {
 
     /**
      * Récupère un location par son ID sur la route /locations/id
+     *
      * @param id de la location en PathVariable
      * @return la location trouvée ( ou erreur envoyé par le service )
      */
@@ -36,6 +38,7 @@ public class LocationController {
 
     /**
      * Ajout d'une location sur la base de donnée, utilisant la requête de chemin /locations
+     *
      * @param location L'object location envoyé dans le body de la requête
      * @return la location sauvegardée
      */
@@ -46,6 +49,7 @@ public class LocationController {
 
     /**
      * Suppression d'une location de la base de donnée sur le chemin /locations/id
+     *
      * @param id valeur de l'id envoyé en PathVariable
      */
     @DeleteMapping("{id}")

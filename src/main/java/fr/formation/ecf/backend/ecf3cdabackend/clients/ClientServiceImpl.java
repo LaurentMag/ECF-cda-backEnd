@@ -24,6 +24,14 @@ public class ClientServiceImpl implements ClientService {
         return clientRepository.findAll();
     }
 
+    public List<Client> findAllByNom(String nom) {
+        return clientRepository.findAllByNom(nom);
+    }
+
+    public List<Client> findAllByPrenom(String prenom) {
+        return clientRepository.findAllByPrenom(prenom);
+    }
+
     @Override
     public Client findById(String id) {
         return clientRepository.findById(id).orElseThrow(() -> {
@@ -55,7 +63,6 @@ public class ClientServiceImpl implements ClientService {
         logger.warn("Le client d'id " + id + " a été supprimé");
         clientRepository.deleteById(id);
     }
-
 
 
 }
