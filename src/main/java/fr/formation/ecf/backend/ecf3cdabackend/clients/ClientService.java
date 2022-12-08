@@ -5,14 +5,12 @@ import java.util.List;
 public interface ClientService {
     /**
      * Récupère la liste de tout les clients présent sur la base de donnée
-     *
      * @return Liste de clients
      */
     List<Client> findAll();
 
     /**
      * Rechercher un client par son ID
-     *
      * @param id du client recherché
      * @return client recherché par son ID ( si trouvé, sinon retourne un message d'erreur )
      */
@@ -20,7 +18,6 @@ public interface ClientService {
 
     /**
      * Ajoute un client à la base de donnée
-     *
      * @param client passé dans le body de la request
      * @return client sauvegardé
      */
@@ -29,7 +26,6 @@ public interface ClientService {
 
     /**
      * Supprime un client séléctionné par son ID de la base de donnée
-     *
      * @param id du client à supprimer.
      */
     void deleteById(String id);

@@ -30,7 +30,6 @@ public class ClientController {
     // POST
     @PostMapping("")
     public Client save(@RequestBody Client client) {
-        System.out.println(client);
         return clientService.save(client);
     }
 

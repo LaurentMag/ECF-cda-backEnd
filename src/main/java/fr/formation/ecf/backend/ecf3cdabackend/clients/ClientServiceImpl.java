@@ -36,7 +36,6 @@ public class ClientServiceImpl implements ClientService {
     // POST
     @Override
     public Client save(Client client) {
-        System.out.println(client);
         return clientRepository.save(client);
     }
 
