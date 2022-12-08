@@ -29,6 +29,11 @@ public class DebugController {
         this.locationRepository = locationRepository;
     }
 
+    /**
+     * Route debug debug/init
+     * Permet la suppression de toute la base de donnée,
+     * Et la création de plusieurs instances de client et vehicules en vu de test
+     */
     @PostMapping("init")
     public void initDatabase() {
         this.clearAll();
@@ -46,6 +51,11 @@ public class DebugController {
 
     }
 
+    /**
+     * Route debut : debug/clear
+     * Permet de supprimer l'ensemble de la base de donnée
+     * Use at your own risk.
+     */
     @DeleteMapping("clear")
     public void clearAll() {
         this.clientRepository.deleteAll();
