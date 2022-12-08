@@ -32,3 +32,107 @@ Dans un terminal, se déplacer dans le dossier du projet, et lancer la commande 
 ```
 ./gradlew spring-boot:run
 ```
+
+
+## Chemins de l'API : 
+
+----
+
+### Clients :
+
+GET : 
+* **findAll**
+```
+/clients
+```
+* **findById**
+```
+/clients/id
+```
+* **Recherches**
+```
+/clients/recherches?paramètre=
+```
+paramètre : **nom** ou **prenom**
+
+POST : 
+* **save**
+```
+/clients
+```
+* **mise à jour**
+```
+/clients/id
+```
+
+DELETE : 
+* **suppression**
+```
+/clients/id
+```
+
+----
+
+### Vehicules : 
+
+
+GET :
+* **findAll**
+```
+/vehicules
+```
+* **findById**
+```
+/vehicules/id
+```
+* **Recherches**
+```
+/vehicules/recherches?paramètre=
+```
+paramètre : **marque** ou **modele** ou **etat** ou **disponible(true or false)**
+
+POST :
+* **save**
+```
+/vehicules
+```
+* **mise à jour**
+```
+/vehicules/id
+```
+
+DELETE :
+* **suppression**
+```
+/vehicules/id
+```
+
+----
+
+### Locations : 
+
+GET :
+* **findAll**
+```
+/locations
+```
+* **findById**
+```
+/locations/id
+```
+
+POST :
+* **save**
+```
+/locations
+```
+* **mise à jour**
+```
+/locations/id
+```
+
+DELETE :
+* **suppression**
+```
+/locations/id
+```
