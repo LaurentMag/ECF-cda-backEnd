@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
@@ -72,6 +73,7 @@ public class LocationServiceImpl implements LocationService {
      * @param location
      */
     private Double calculeDuPrixDeLocation(Location location) {
+        location.setDateDeModification(LocalDateTime.now());
         Vehicule vehiculeLoue = vehiculeService.findById(location.getVehicule().getId());
         Integer prixJournee = vehiculeLoue.getPrixJournee();
         Long differenceJour = ChronoUnit.DAYS.between(location.getDateDebut(), location.getDateFin());

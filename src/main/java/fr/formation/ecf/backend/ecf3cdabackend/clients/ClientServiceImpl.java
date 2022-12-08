@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class ClientServiceImpl implements ClientService {
@@ -44,6 +46,7 @@ public class ClientServiceImpl implements ClientService {
     // POST
     @Override
     public Client save(Client client) {
+        client.setDateDeModification(LocalDateTime.now());
         return clientRepository.save(client);
     }
 

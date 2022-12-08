@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class VehiculeServiceImpl implements VehiculeService {
@@ -56,6 +57,7 @@ public class VehiculeServiceImpl implements VehiculeService {
     // POST
     @Override
     public Vehicule save(Vehicule vehicule) {
+        vehicule.setDateDeModification(LocalDateTime.now());
         return vehiculeRepository.save(vehicule);
     }
 
