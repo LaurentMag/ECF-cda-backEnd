@@ -7,6 +7,10 @@ a m2i, villeneuve d'ascq
 
 Liens vers le **Front-End** :
 [GitHub](https://github.com/LaurentMag/ECF-cda-frontEnd)
+Ne fonctionne pas dans le front : 
+ - creation de location
+ - certains champs des formulaires.
+ - les filtres ( pas reliés aux back par des requêtes )
 
 
 ## Prérequis :
