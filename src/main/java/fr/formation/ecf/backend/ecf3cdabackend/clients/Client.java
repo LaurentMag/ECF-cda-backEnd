@@ -1,6 +1,7 @@
 package fr.formation.ecf.backend.ecf3cdabackend.clients;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import fr.formation.ecf.backend.ecf3cdabackend.tools.EntityInfo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,9 +15,8 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document
-public class Client {
-    @Id
-    private String id;
+public class Client extends EntityInfo {
+
     private String nom;
     private String prenom;
     @JsonFormat(pattern = "yyyy-MM-dd")

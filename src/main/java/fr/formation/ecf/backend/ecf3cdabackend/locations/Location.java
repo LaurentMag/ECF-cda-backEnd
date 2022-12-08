@@ -3,6 +3,7 @@ package fr.formation.ecf.backend.ecf3cdabackend.locations;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import fr.formation.ecf.backend.ecf3cdabackend.clients.Client;
+import fr.formation.ecf.backend.ecf3cdabackend.tools.EntityInfo;
 import fr.formation.ecf.backend.ecf3cdabackend.vehicules.Vehicule;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,9 +18,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document
-public class Location {
-    @Id
-    private String id;
+public class Location extends EntityInfo {
+
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateDebut;
     @JsonFormat(pattern = "yyyy-MM-dd")
