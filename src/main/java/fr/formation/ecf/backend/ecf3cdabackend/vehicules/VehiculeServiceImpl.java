@@ -40,6 +40,16 @@ public class VehiculeServiceImpl implements VehiculeService {
     }
 
 
+    @Override
+    public Vehicule update(String id, Vehicule vehicule) {
+
+        if (!this.vehiculeRepository.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Le vehicule d'id " + id + " n'existe pas dans la base de donnée");
+        }
+        return this.save(vehicule);
+    }
+
+
     //========================================================================
     //DELETE
     @Override

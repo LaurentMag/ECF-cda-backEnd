@@ -35,8 +35,8 @@ public class LocationController {
     }
 
     /**
-     * Ajout d'une location sur la base de donnée, utilisant la request de chemin /locations
-     * @param location L'object location envoyé dans le body de la request
+     * Ajout d'une location sur la base de donnée, utilisant la requête de chemin /locations
+     * @param location L'object location envoyé dans le body de la requête
      * @return la location sauvegardée
      */
     @PostMapping("")

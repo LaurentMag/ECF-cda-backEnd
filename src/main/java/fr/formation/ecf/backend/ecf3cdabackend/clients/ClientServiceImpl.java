@@ -39,6 +39,15 @@ public class ClientServiceImpl implements ClientService {
         return clientRepository.save(client);
     }
 
+    @Override
+    public Client update(String id, Client client) {
+
+        if (!this.clientRepository.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Le client d'id " + id + " n'existe pas dans la base de donnée");
+        }
+        return this.save(client);
+    }
+
     //========================================================================
     //DELETE
     @Override
@@ -46,5 +55,7 @@ public class ClientServiceImpl implements ClientService {
         logger.warn("Le client d'id " + id + " a été supprimé");
         clientRepository.deleteById(id);
     }
+
+
 
 }

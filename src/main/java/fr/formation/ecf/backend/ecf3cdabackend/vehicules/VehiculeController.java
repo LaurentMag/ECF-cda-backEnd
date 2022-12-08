@@ -35,8 +35,8 @@ public class VehiculeController {
     }
 
     /**
-     * Ajout d'un vehicule sur la base de donnée, utilisant la request de chemin /vehicules
-     * @param vehicule L'object vehicule envoyé dans le body de la request
+     * Ajout d'un vehicule sur la base de donnée, utilisant la requête de chemin /vehicules
+     * @param vehicule L'object vehicule envoyé dans le body de la requête
      * @return le vehicule sauvegardé
      */
     @PostMapping

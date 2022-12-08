@@ -25,6 +25,12 @@ public interface ClientService {
 
 
     /**
+     * met un jour un client selectionné par son ID
+     * et par les informations envoyé dans le body de la request
+     */
+    Client update(String id, Client client);
+
+    /**
      * Supprime un client séléctionné par son ID de la base de donnée
      * @param id du client à supprimer.
      */

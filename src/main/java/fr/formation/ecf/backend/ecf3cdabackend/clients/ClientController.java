@@ -1,6 +1,8 @@
 package fr.formation.ecf.backend.ecf3cdabackend.clients;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -40,13 +42,28 @@ public class ClientController {
     //========================================================================
     // POST
     /**
-     * Ajout d'un client sur la base de donnée, utilisant la request de chemin /clients
-     * @param client L'object client envoyé dans le body de la request
+     * Ajout d'un client sur la base de donnée, utilisant la requête de chemin /clients
+     * @param client L'object client envoyé dans le body de la requête
      * @return le client sauvegardé
      */
     @PostMapping("")
     public Client save(@RequestBody Client client) {
         return clientService.save(client);
+    }
+
+    /**
+     * Recois l'id d'un client et les informations dans le body de la requête pour mettre à jour l'objet
+     * dans la base de donnée
+     * @param id du client
+     * @param client informations du client
+     * @return les informations du client mise à jour
+     */
+    @PatchMapping("{id}")
+    public Client update(@PathVariable String id, @RequestBody Client client) {
+        if (!id.equals(client.getId())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Ce client n'existe pas");
+        }
+        return clientService.update(id, client);
     }
 
     //========================================================================

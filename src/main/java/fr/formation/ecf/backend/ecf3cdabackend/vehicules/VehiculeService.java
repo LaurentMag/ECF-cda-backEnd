@@ -1,5 +1,7 @@
 package fr.formation.ecf.backend.ecf3cdabackend.vehicules;
 
+import fr.formation.ecf.backend.ecf3cdabackend.clients.Client;
+
 import java.util.List;
 
 public interface VehiculeService {
@@ -22,6 +24,12 @@ public interface VehiculeService {
      * @return vehicule sauvegardé
      */
     Vehicule save(Vehicule vehicule);
+
+    /**
+     * met un jour un vehicule selectionné par son ID
+     * et par les informations envoyé dans le body de la request
+     */
+    Vehicule update(String id, Vehicule vehicule);
 
     /**
      * Supprime un vehicule séléctionné par son ID de la base de donnée
