@@ -1,6 +1,7 @@
 package fr.formation.ecf.backend.ecf3cdabackend.locations;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import fr.formation.ecf.backend.ecf3cdabackend.clients.Client;
 import fr.formation.ecf.backend.ecf3cdabackend.vehicules.Vehicule;
 import lombok.AllArgsConstructor;
@@ -19,7 +20,9 @@ import java.time.LocalDate;
 public class Location {
     @Id
     private String id;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateDebut;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateFin;
     private Double prixTotal;
     @DBRef
