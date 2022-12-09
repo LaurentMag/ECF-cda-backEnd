@@ -23,9 +23,6 @@ public class LocationServiceImpl implements LocationService {
         this.vehiculeService = vehiculeService;
     }
 
-
-    //========================================================================
-    //GET
     @Override
     public List<Location> findAll() {
         return locationRepository.findAll();
@@ -39,15 +36,13 @@ public class LocationServiceImpl implements LocationService {
         });
     }
 
-    //========================================================================
-    // POST
     @Override
     public Location save(Location location) {
-        // set price
-        location.setPrixTotal(this.calculeDuPrixDeLocation(location));
-        this.changeDisponibiliteDuVehicule(location);
+        Vehicule vehicule = this.vehiculeService.findById(location.getVehicule().getId());
+        this.setPrixTotal(location, vehicule);
+        this.changeDisponibiliteDuVehicule(location, vehicule);
         // check date and let create or not.
-        if (this.verifieDateDeLocation(location)) {
+        if (this.verifieDateDeLocation(location, vehicule)) {
             return locationRepository.save(location);
         } else {
             logger.warn("La location n'est pas créer, conflits avec les dates");
@@ -55,29 +50,19 @@ public class LocationServiceImpl implements LocationService {
         return null;
     }
 
-    //========================================================================
-    //DELETE
     @Override
     public void deleteById(String id) {
         logger.warn("La location d'id " + id + " à été supprimé");
         locationRepository.deleteById(id);
     }
 
-    //========================================================================
-    //========================================================================
-
     /**
-     * Calcule le prix de location totale pour la période de location selectionnée
-     * En passant en argument la location qui sera sauvé en base de donnée.
-     *
-     * @param location
+     *  Calcule le prix de location totale pour la période de location selectionnée
+     * @return prix de la location
      */
-    private Double calculeDuPrixDeLocation(Location location) {
-        location.setDateDeModification(LocalDateTime.now());
-        Vehicule vehiculeLoue = vehiculeService.findById(location.getVehicule().getId());
-        Integer prixJournee = vehiculeLoue.getPrixJournee();
-        Long differenceJour = ChronoUnit.DAYS.between(location.getDateDebut(), location.getDateFin());
-        return Double.valueOf(prixJournee * differenceJour);
+    private void setPrixTotal(Location location, Vehicule vehicule) {
+        Double prix = ChronoUnit.DAYS.between(location.getDateDebut(), location.getDateFin()) * vehicule.getPrixJournee();
+        location.setPrixTotal(prix);
     }
 
     /**
@@ -89,36 +74,29 @@ public class LocationServiceImpl implements LocationService {
      * @param location nouvellement crée.
      * @return Boolean permettant de déterminer s'il y a un conflit de date ou non, et permettant la création.
      */
-    private Boolean verifieDateDeLocation(Location location) {
+    private Boolean verifieDateDeLocation(Location location, Vehicule vehicule) {
         Boolean canCreate = true;
+        List<Location> locationList = this.locationRepository.findLocationByVehiculeId(vehicule.getId());
 
-        String VehiculeID = location.getVehicule().getId();
-        Vehicule vehicule = this.vehiculeService.findById(VehiculeID);
-
-        List<Location> locationsList = this.findAll();
-
-        for (Location locationItem : locationsList) {
-            if (locationItem.getVehicule().getId().equals(VehiculeID)) {
-                if (vehicule.getDisponible() == false ||
-                        location.getDateDebut().isBefore(locationItem.getDateFin()) ||
-                        location.getDateFin().isAfter(locationItem.getDateDebut())) {
-                    canCreate = false;
-                    throw new ResponseStatusException(
-                            HttpStatus.NOT_ACCEPTABLE,
-                            "Le véhicule est indisponible il n'est pas possible de le louer"
-                    );
-                }
+        for (Location locationItem : locationList) {
+            if (vehicule.getDisponible() == false ||
+                    location.getDateDebut().isBefore(locationItem.getDateFin()) ||
+                    location.getDateFin().isAfter(locationItem.getDateDebut())) {
+                canCreate = false;
+                throw new ResponseStatusException(
+                        HttpStatus.NOT_ACCEPTABLE,
+                        "Le véhicule est indisponible il n'est pas possible de le louer"
+                );
             }
         }
         return canCreate;
     }
 
-    /** Change la disponibilité du véhicule si la date du jour et dans l'intervalle de la location à créer
+    /**
+     * Change la disponibilité du véhicule si la date du jour et dans l'intervalle de la location à créer
      * @param location
      */
-    private void changeDisponibiliteDuVehicule(Location location) {
-        Vehicule vehicule = this.vehiculeService.findById(location.getVehicule().getId());
-
+    private void changeDisponibiliteDuVehicule(Location location, Vehicule vehicule) {
         if (LocalDate.now().isAfter(location.getDateDebut()) || LocalDate.now().isBefore(location.getDateFin())) {
             vehicule.setDisponible(false);
         }

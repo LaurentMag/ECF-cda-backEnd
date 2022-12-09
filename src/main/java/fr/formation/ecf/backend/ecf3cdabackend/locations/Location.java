@@ -13,6 +13,7 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 @Data
 @NoArgsConstructor
@@ -25,9 +26,10 @@ public class Location extends EntityInfo {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateFin;
     private Double prixTotal;
+
     @DBRef
     Client client;
+
     @DBRef
     Vehicule vehicule;
-
 }

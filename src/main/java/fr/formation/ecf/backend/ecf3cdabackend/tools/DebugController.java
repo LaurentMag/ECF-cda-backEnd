@@ -43,11 +43,11 @@ public class DebugController {
         Client client4 = this.clientRepository.save(new Client("Brittany", "Woodpile", LocalDate.of(1970, 2, 25), "brittWood@gmail.com", "0604040404"));
         Client client5 = this.clientRepository.save(new Client("Brenda", "TreeBurns", LocalDate.of(1950, 9, 24), "brendaTree@gmail.com", "0605050505"));
 
-        Vehicule vehicule1 = this.vehiculeRepository.save(new Vehicule("Renault", "Sinic", "AA-001-AA", "A", 400, true, "voiture"));
-        Vehicule vehicule2 = this.vehiculeRepository.save(new Vehicule("Peugeot", "666", "PE-101-GO", "B", 100, true, "voiture"));
-        Vehicule vehicule3 = this.vehiculeRepository.save(new Vehicule("Aston Martin", "006", "OO-007-OO", "S", 8000, true, "voiture"));
-        Vehicule vehicule4 = this.vehiculeRepository.save(new Vehicule("Fraudari", "Wallet-GT", "XX-041-ZZ", "F", 10150, true, "voiture"));
-        Vehicule vehicule5 = this.vehiculeRepository.save(new Vehicule("Lada", "Ruined", "RU-901-UR", "E", 20, true, "voiture"));
+        Vehicule vehicule1 = this.vehiculeRepository.save(new Vehicule("Renault", "Sinic", "AA-001-AA", "A", 400.0, true, "voiture"));
+        Vehicule vehicule2 = this.vehiculeRepository.save(new Vehicule("Peugeot", "666", "PE-101-GO", "B", 100.0, true, "voiture"));
+        Vehicule vehicule3 = this.vehiculeRepository.save(new Vehicule("Aston Martin", "006", "OO-007-OO", "S", 8000.0, true, "voiture"));
+        Vehicule vehicule4 = this.vehiculeRepository.save(new Vehicule("Fraudari", "Wallet-GT", "XX-041-ZZ", "F", 10150.0, true, "voiture"));
+        Vehicule vehicule5 = this.vehiculeRepository.save(new Vehicule("Lada", "Ruined", "RU-901-UR", "E", 20.0, true, "voiture"));
 
     }
 

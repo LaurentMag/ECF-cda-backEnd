@@ -17,7 +17,7 @@ public class Vehicule extends EntityInfo {
     private String modele;
     private String immatriculation;
     private String etat;
-    private Integer prixJournee;
+    private Double prixJournee;
     private Boolean disponible;
     private String type;
 
