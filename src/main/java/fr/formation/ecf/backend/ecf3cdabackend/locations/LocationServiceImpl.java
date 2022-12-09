@@ -39,7 +39,6 @@ public class LocationServiceImpl implements LocationService {
     @Override
     public Location save(Location location) {
         Vehicule vehicule = this.vehiculeService.findById(location.getVehicule().getId());
-        this.setPrixTotal(location, vehicule);
         this.changeDisponibiliteDuVehicule(location, vehicule);
         // check date and let create or not.
         if (this.verifieDateDeLocation(location, vehicule)) {
@@ -54,15 +53,6 @@ public class LocationServiceImpl implements LocationService {
     public void deleteById(String id) {
         logger.warn("La location d'id " + id + " à été supprimé");
         locationRepository.deleteById(id);
-    }
-
-    /**
-     *  Calcule le prix de location totale pour la période de location selectionnée
-     * @return prix de la location
-     */
-    private void setPrixTotal(Location location, Vehicule vehicule) {
-        Double prix = ChronoUnit.DAYS.between(location.getDateDebut(), location.getDateFin()) * vehicule.getPrixJournee();
-        location.setPrixTotal(prix);
     }
 
     /**

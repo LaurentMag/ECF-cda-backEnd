@@ -57,7 +57,7 @@ public class VehiculeServiceImpl implements VehiculeService {
     // POST
     @Override
     public Vehicule save(Vehicule vehicule) {
-        vehicule.setDateDeModification(LocalDateTime.now());
+        //vehicule.setDateDeModification(LocalDateTime.now());
         return vehiculeRepository.save(vehicule);
     }
 

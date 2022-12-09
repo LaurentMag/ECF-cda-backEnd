@@ -43,8 +43,8 @@ public class LocationController {
      * @return la location sauvegardée
      */
     @PostMapping("")
-    public Location save(@RequestBody Location location) {
-        return locationService.save(location);
+    public void save(@RequestBody Location location) {
+         locationService.save(location);
     }
 
     /**

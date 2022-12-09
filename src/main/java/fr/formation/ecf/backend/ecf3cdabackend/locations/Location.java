@@ -25,11 +25,17 @@ public class Location extends EntityInfo {
     private LocalDate dateDebut;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateFin;
-    private Double prixTotal;
+    //private Double prixTotal;
 
     @DBRef
     Client client;
 
     @DBRef
     Vehicule vehicule;
+
+    public Double getPrixTotal() {
+        Double prix = ChronoUnit.DAYS.between(this.getDateDebut(), this.getDateFin()) * getVehicule().getPrixJournee();
+        System.out.println(this.getVehicule());
+        return prix;
+    }
 }

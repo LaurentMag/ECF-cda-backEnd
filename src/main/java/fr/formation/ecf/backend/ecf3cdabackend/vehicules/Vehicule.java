@@ -21,5 +21,4 @@ public class Vehicule extends EntityInfo {
     private Boolean disponible;
     private String type;
 
-
 }
