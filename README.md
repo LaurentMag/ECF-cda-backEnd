@@ -1,142 +1,165 @@
 # ECF Localib back-end.
 
 ## Présentation :
+
 ECF back-end de l'application Localib ( sujet de l'examen ).  
 Dans le cadre de la formation concepteur développeur d'application
 a m2i, villeneuve d'ascq
 
-Liens vers le **Front-End** :
-[GitHub](https://github.com/LaurentMag/ECF-cda-frontEnd)
-Ne fonctionne pas dans le front : 
- - creation de location
- - certains champs des formulaires.
- - les filtres ( pas reliés aux back par des requêtes )
-
-
 ## Prérequis :
+
 - Java 11+
 - [docker](https://docs.docker.com/get-docker/)
 - [docker-compose](https://docs.docker.com/compose/install/)
 - IDE (IntelliJ, Eclipse)
 
 ## Installation :
-### Base de donnée :
-Pour lancer la base de donnée, dans un terminal, se déplacer dans le dossier du projet   
+
+### Projet :
+
+Pour lancer la base de donnée, dans un terminal, se déplacer dans le dossier du projet  
 Et lancer la commande :
+
 ```
 docker-compose up -d
 ```
 
-### Lancer l'application dans l'IDE :
-Ouvrir le projet dans l'IDE choisi, et lancer la class :  
-`Ecf3CdaBackEndApplication`
+L'API et la base de donnée vont être dockerisé
 
-### Lancer l'application sans IDE :
-Dans un terminal, se déplacer dans le dossier du projet, et lancer la commande :
-```
-./gradlew spring-boot:run
-```
+## Chemins de l'API :
 
-
-## Chemins de l'API : 
-
-----
+---
 
 ### Clients :
 
-GET : 
-* **findAll**
+GET :
+
+- **findAll**
+
 ```
 /clients
 ```
-* **findById**
+
+- **findById**
+
 ```
 /clients/id
 ```
-* **Recherches**
+
+- **Recherches**
+
 ```
 /clients/recherches?paramètre=
 ```
+
 paramètre : **nom** ou **prenom**
 
-POST : 
-* **save**
+POST :
+
+- **save**
+
 ```
 /clients
 ```
-* **mise à jour**
+
+- **mise à jour**
+
 ```
 /clients/id
 ```
 
-DELETE : 
-* **suppression**
+DELETE :
+
+- **suppression**
+
 ```
 /clients/id
 ```
 
-----
+---
 
-### Vehicules : 
-
+### Vehicules :
 
 GET :
-* **findAll**
+
+- **findAll**
+
 ```
 /vehicules
 ```
-* **findById**
+
+- **findById**
+
 ```
 /vehicules/id
 ```
-* **Recherches**
+
+- **Recherches**
+
 ```
 /vehicules/recherches?paramètre=
 ```
+
 paramètre : **marque** ou **modele** ou **etat** ou **disponible(true or false)**
 
 POST :
-* **save**
+
+- **save**
+
 ```
 /vehicules
 ```
-* **mise à jour**
+
+- **mise à jour**
+
 ```
 /vehicules/id
 ```
 
 DELETE :
-* **suppression**
+
+- **suppression**
+
 ```
 /vehicules/id
 ```
 
-----
+---
 
-### Locations : 
+### Locations :
 
 GET :
-* **findAll**
+
+- **findAll**
+
 ```
 /locations
 ```
-* **findById**
+
+- **findById**
+
 ```
 /locations/id
 ```
 
 POST :
-* **save**
+
+- **save**
+
 ```
 /locations
 ```
-* **mise à jour**
+
+- **mise à jour**
+
 ```
 /locations/id
 ```
 
 DELETE :
-* **suppression**
+
+- **suppression**
+
 ```
 /locations/id
 ```
