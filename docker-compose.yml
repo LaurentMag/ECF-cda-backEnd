@@ -1,11 +1,21 @@
+#indique pas la version du docker compose pour le back 
 services:
-  mongo:
+  api_spring:
+    build: .
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - mongo_db
+
+  mongo_db:
     image: mongo
+    restart: always
     ports:
       - 27017:27017
-  mongo-express:
-    image: mongo-express
-    ports:
-      - 8081:8081
+#  mongo-express:
+#    image: mongo-express
+#    ports:
+ #     - 8081:8081
 
 

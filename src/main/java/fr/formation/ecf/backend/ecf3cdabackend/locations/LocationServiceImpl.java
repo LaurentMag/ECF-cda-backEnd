@@ -57,10 +57,10 @@ public class LocationServiceImpl implements LocationService {
 
     /**
      * A la création d'une location vérifie :
-     * Si la date de début de la location à créer est avant la fin de la location du même vehicule
-     * Si la cate de fin de la location à créer est après le début de la location du même véhicule
      * Si le vehicule que le client tente de louer est indisponible
-     *
+     * Ou si la date de début de la location à créer est après la date de début et avant la date de fin
+     * Ou si la cate de fin de la location à créer est après le début de la location et avant la date de fin
+     * D'une location ayant un véhicule similaire
      * @param location nouvellement crée.
      * @return Boolean permettant de déterminer s'il y a un conflit de date ou non, et permettant la création.
      */
@@ -70,8 +70,11 @@ public class LocationServiceImpl implements LocationService {
 
         for (Location locationItem : locationList) {
             if (vehicule.getDisponible() == false ||
-                    location.getDateDebut().isBefore(locationItem.getDateFin()) ||
-                    location.getDateFin().isAfter(locationItem.getDateDebut())) {
+                    location.getDateFin().isAfter(locationItem.getDateDebut()) &&
+                    location.getDateFin().isBefore(locationItem.getDateFin()) ||
+                    location.getDateDebut().isAfter(locationItem.getDateDebut()) &&
+                    location.getDateDebut().isBefore(locationItem.getDateFin()))
+            {
                 canCreate = false;
                 throw new ResponseStatusException(
                         HttpStatus.NOT_ACCEPTABLE,
